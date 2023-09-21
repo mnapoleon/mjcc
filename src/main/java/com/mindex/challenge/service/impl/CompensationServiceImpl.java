@@ -25,6 +25,7 @@ public class CompensationServiceImpl implements CompensationService {
     public Compensation create(Compensation compensation) {
         LOG.debug("Creating compensation [{}]", compensation);
 
+        // check in employee exists before assigning compensation
         Employee employee = employeeService.read(compensation.getEmployee().getEmployeeId());
         if (employee == null) {
             throw new RuntimeException("Employee with id " + compensation.getEmployee().getEmployeeId() + " does not exist.  Cannot not create compensation record.");
@@ -38,6 +39,7 @@ public class CompensationServiceImpl implements CompensationService {
     public Compensation read(String employeeId) {
         Compensation compensation = compensationRepository.findByEmployeeId(employeeId);
 
+        // if employee doesn't exist there is no compensation to return
         if (compensation == null) {
             throw new RuntimeException("Invalid employeeId: " + employeeId);
         }

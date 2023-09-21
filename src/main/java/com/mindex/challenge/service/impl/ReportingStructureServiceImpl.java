@@ -42,7 +42,8 @@ public class ReportingStructureServiceImpl implements ReportingStructureService 
     }
 
     /**
-     * Recursive function to build a complete direct reports structure.
+     * Function to build a complete direct reports structure filling in names, dept and positions along with
+     * direct reports.
      * @param reports
      * @return
      */
